@@ -1,0 +1,24 @@
+- <project name="VOC" basedir=".">
+  <property name="cobertura.dir" value="cobertura-1.9.4.1" /> 
+  <property name="data.file" value="cobertura.ser" /> 
+  <property name="src.dir" value="customerprofilespartaweb/src/main/java/" /> 
+- <path id="cobertura.classpath">
+  <fileset dir="${cobertura.dir}" includes="**/*.jar" /> 
+  </path>
+  <taskdef classpathref="cobertura.classpath" resource="tasks.properties" /> 
+- <target name="instrument">
+  <echo>coberturadir : ${cobertura.dir} basedir : ${basedir} Starting instrumenting all the jars required....</echo> 
+- <cobertura-instrument datafile="${data.file}">
+- <fileset dir="backup/">
+  <include name="**/*.jar" /> 
+  </fileset>
+  </cobertura-instrument>
+  <echo>Ended instrumenting the jars...</echo> 
+  </target>
+- <target name="coverage">
+  <cobertura-report datafile="${data.file}" srcdir="${src.dir}" format="xml" destdir="." /> 
+  </target>
+- <target name="html_report">
+  <cobertura-report datafile="${data.file}" format="html" destdir="report/" /> 
+  </target>
+  </project>
